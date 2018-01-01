@@ -1,9 +1,17 @@
-Build:
+Build
+=====
+
 ```
 go build -o prb .
 ```
 
-Run:
+cross-compilation:
+```
+GOOS=freebsd GOARCH=amd64 go build -o prb .
+```
+
+Run
+===
 
 ```
 TARGET=/home/user
