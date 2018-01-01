@@ -153,7 +153,7 @@ func main() {
 	dir := flag.Args()[0]
 	fmt.Fprintf(os.Stderr, "traversing %v with %v workers\n", dir, workers)
 
-	f, err := os.OpenFile(outputFile, syscall.O_APPEND, 0644)
+	f, err := os.OpenFile(outputFile, syscall.O_WRONLY|syscall.O_APPEND, 0644)
 	if os.IsNotExist(err) {
 		fmt.Fprintf(os.Stderr, "creating output file %v\n", outputFile)
 		err = ioutil.WriteFile(outputFile, []byte("workers\tfiles\tdirs\tbytes\ttime (seconds)\tbandwidth (per second)\n"), 0644)
@@ -162,7 +162,7 @@ func main() {
 			os.Exit(2)
 		}
 
-		f, err = os.OpenFile(outputFile, syscall.O_APPEND, 0644)
+		f, err = os.OpenFile(outputFile, syscall.O_WRONLY|syscall.O_APPEND, 0644)
 	}
 
 	if err != nil {
